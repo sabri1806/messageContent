@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html  
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Feedback Posts</title>
+</h:head>
+<h:body>
+	<h1>User Registry</h1>
+	<h:form>
+			<div>
+			<label>User Id</label>
+			<h:inputText value="#{registerMb.userId}" />
+		</div>
+		<div>
+			<label>User</label>
+			<h:inputText value="#{registerMb.username}" />
+		</div>
+		<div>
+			<label>User Mail</label>
+			<h:inputText value="#{registerMb.mail}" />
+		</div>
+		<div>
+			<label>Password</label>
+			<h:inputSecret value="#{registerMb.password}" />
+		</div>
+		<h:commandLink action="#{registerMb.register()}" >
+			Register
+		</h:commandLink>
+	</h:form>
+</h:body>
+</html>
