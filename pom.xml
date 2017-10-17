@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>edu.davinci</groupId>
-	<artifactId>FeedbackPosts</artifactId>
+	<artifactId>messageContent</artifactId>
 	<version>0.1</version>
 	<packaging>war</packaging>
 
@@ -21,6 +21,23 @@
 			<version>6.0-6</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<!-- bootstrap & jquery -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>2.1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+            <version>4.5.0</version>
+        </dependency>
 	</dependencies>
 	<build>
 		<plugins>

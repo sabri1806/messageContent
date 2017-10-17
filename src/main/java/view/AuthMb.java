@@ -30,7 +30,7 @@ public class AuthMb implements Serializable{
 		return currentUser != null;
 	}
 	public List<Post> getUserPost(){
-		System.out.println("buscando posr");
+		System.out.println("buscando post");
 		System.out.println(currentUser.getId());
 		return postCntr.getUserPost(currentUser);
 	}

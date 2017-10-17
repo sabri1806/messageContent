@@ -3,13 +3,20 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-	<title>Soho</title>
+	<title>FeedbackPost</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <h:outputStylesheet name="css/bootstrap.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <h:outputStylesheet name="css/style.css" />
+	<h:outputScript name="js/bootstrap.js" />
 </h:head>
 <h:body>
-	<h1>Entrar</h1>
+	<h1>Log In to FeedbackPost</h1>
 	<h:form>
 		<div>
-			<label>Usuario</label>
+			<label>User</label>
 			<h:inputText value="#{authMb.username}" />
 		</div>
 		<div>
@@ -17,7 +24,7 @@
 			<h:inputSecret value="#{authMb.password}" />
 		</div>
 		<h:commandLink action="#{authMb.loggin()}" >
-			Entrar
+			Log In
 		</h:commandLink>
 	</h:form>
 </h:body>

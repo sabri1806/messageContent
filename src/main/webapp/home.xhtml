@@ -4,16 +4,30 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<title>FeedbackPost</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <h:outputStylesheet name="css/bootstrap.css" />
+    <h:outputStylesheet name="css/bootstrap.css.map" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <h:outputStylesheet name="css/style.css" />
+	<h:outputScript name="js/bootstrap.js" />
 </h:head>
 <h:body>
 	<h:form>
-		<nav>
-			<h:link value="Entrar" outcome="login" rendered="#{not authMb.logged}" />
-			<h:link value="Registrarse" outcome="register"  rendered="#{not authMb.logged}"/>
-			<h:commandLink value="Salir" action="#{authMb.logout()}" rendered="#{authMb.logged}"/>
+		<nav class="navbar navbar-default">
+		    <div class="navbar-header">
+		      <h:link class="navbar-brand" value="Log in" outcome="login" rendered="#{not authMb.logged}" ></h:link>
+		    </div>
+		    <div class="navbar-header">
+		      <h:link class="navbar-brand" value="Register" outcome="register"  rendered="#{not authMb.logged}"></h:link>
+		    </div>
+		    <div class="navbar-header">
+		      <h:commandLink  class="navbar-brand" value="Log out" action="#{authMb.logout()}" rendered="#{authMb.logged}"/>
+		    </div>
 		</nav>
 	</h:form>
-	<h1>Welcome 
+	<h1 class="title">Welcome 
 		<h:outputText value="#{authMb.currentUser.username}" />
 	</h1>
 		<h2>You can see and save all your post
