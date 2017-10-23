@@ -15,6 +15,17 @@
 <h:body>
 	<h1>Welcome to Feedback Posts</h1>
 	<h:form>
+	<nav class="navbar navbar-default">
+		    <div class="navbar-header">
+		      <h:link class="navbar-brand" value="Log in" outcome="login" rendered="#{not authMb.logged}" ></h:link>
+		    </div>
+		    <div class="navbar-header">
+		      <h:link class="navbar-brand" value="Register" outcome="register"  rendered="#{not authMb.logged}"></h:link>
+		    </div>
+		    <div class="navbar-header">
+		      <h:commandLink  class="navbar-brand" value="Log out" action="#{authMb.logout()}" rendered="#{authMb.logged}"/>
+		    </div>
+		</nav>
 		<nav>
 			<h:link value="Log in" outcome="login" rendered="#{not authMb.logged}" />
 			<h:link value="Register" outcome="register" rendered="#{not authMb.logged}"/>

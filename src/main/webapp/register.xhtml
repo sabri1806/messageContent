@@ -13,14 +13,25 @@
 	<h:outputScript name="js/bootstrap.js" />
 </h:head>
 <h:body>
-	<h1>User Registry</h1>
 	<h:form>
+	<nav class="navbar navbar-default">
+		    <div class="navbar-header">
+		      <h:link class="navbar-brand" value="Home" outcome="home" rendered="#{not authMb.logged}" ></h:link>
+		    </div>
+		    <div class="navbar-header">
+		      <h:link class="navbar-brand" value="Log in" outcome="login"  rendered="#{not authMb.logged}"></h:link>
+		    </div>
+		    <div class="navbar-header">
+		      <h:commandLink  class="navbar-brand" value="Log out" action="#{authMb.logout()}" rendered="#{authMb.logged}"/>
+		    </div>
+		</nav>
+		<h1>User Registry</h1>
 			<div>
 			<label>User Id </label>
 			<h:inputText value="#{registerMb.userId}" />
 		</div>
 		<div>
-			<label>User </label>
+			<label>User</label>
 			<h:inputText value="#{registerMb.username}" />
 		</div>
 		<div>
@@ -32,7 +43,7 @@
 			<h:inputSecret value="#{registerMb.password}" />
 		</div>
 		<h:commandLink action="#{registerMb.register()}" >
-			Register
+			Send
 		</h:commandLink>
 	</h:form>
 </h:body>

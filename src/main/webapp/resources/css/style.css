@@ -1,6 +1,25 @@
 body {
-	color: #498ade;
+	color: #ff5722;
 	font-size: large;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 4px;
+}
+.navbar-default{
+	background-color: #ff9800;
+	border-color: #ffc107;
+}
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+.navbar-brand {
+	font-size: 22px;
+}
+.a{
+	color:#ff5722;
+}
+textarea.form-control{
+	margin-top: 40px;
+}
+.next-button{
+ margin: 30px 30px 30px 30px;
 }

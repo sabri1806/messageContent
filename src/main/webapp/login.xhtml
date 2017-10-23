@@ -13,8 +13,20 @@
 	<h:outputScript name="js/bootstrap.js" />
 </h:head>
 <h:body>
-	<h1>Log In to FeedbackPost</h1>
+	
 	<h:form>
+		<nav class="navbar navbar-default">
+		    <div class="navbar-header">
+		      <h:link class="navbar-brand" value="Home" outcome="home" rendered="#{not authMb.logged}" ></h:link>
+		    </div>
+		    <div class="navbar-header">
+		      <h:link class="navbar-brand" value="Register" outcome="register" rendered="#{not authMb.logged}"></h:link>
+		    </div>
+		    <div class="navbar-header">
+		      <h:commandLink  class="navbar-brand" value="Log out" action="#{authMb.logout()}" rendered="#{authMb.logged}"/>
+		    </div>
+		</nav>
+		<h1>Log In to FeedbackPost</h1>
 		<div>
 			<label>User</label>
 			<h:inputText value="#{authMb.username}" />

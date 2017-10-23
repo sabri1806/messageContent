@@ -20,10 +20,10 @@ public class DB {
 		user2.setId(nextUserId());
 		users.add(user2);
 		
-		posts.add(new Post(1,"p",  new Date(), "este es mi primer post que emocion! :P ",1));
-		posts.add(new Post(2, "p", new Date(), "otro post que escrbi recien ",1));
-		posts.add(new Post(3, "p", new Date(), "sigo escribiendo ",2));
-		posts.add(new Post(4, "p", new Date(), "esto es un monton de posts ya",2));
+		posts.add(new Post(1, "p",  new Date(), "este es mi primer post que emocion! :P ",1));
+		posts.add(new Post(2, "p", new Date(), "otro post que escribi recien ",1));
+		posts.add(new Post(3, "a", new Date(), "sigo escribiendo ",2));
+		posts.add(new Post(4, "a", new Date(), "esto es un monton de posts ya",2));
 	}
 	
 	public List <Post>getPosts(){

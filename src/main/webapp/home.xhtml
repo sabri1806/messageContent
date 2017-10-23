@@ -33,9 +33,18 @@
 		<h2>You can see and save all your post
 		
 		</h2>
+	<div>
 	<h:dataTable value="#{authMb.userPost}" var="post">
 		<h:column>#{post.message}</h:column>
 		<h:column>#{post.dateMessage}</h:column>
 	</h:dataTable>
+	<div>
+	<textarea class="form-control" rows="2" placeholder="Enter your post here"></textarea>
+	</div>
+	<div class="next-button">
+	<button type="submit" class="btn btn-info">Enviar</button>
+	</div>
+	
+	</div>
 </h:body>
 </html>
