@@ -8,12 +8,10 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <h:outputStylesheet name="css/bootstrap.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <h:outputStylesheet name="css/style.css" />
-	<h:outputScript name="js/bootstrap.js" />
 </h:head>
 <h:body>
-	<h1>Welcome to Feedback Posts</h1>
+	
 	<h:form>
 	<nav class="navbar navbar-default">
 		    <div class="navbar-header">
@@ -26,11 +24,8 @@
 		      <h:commandLink  class="navbar-brand" value="Log out" action="#{authMb.logout()}" rendered="#{authMb.logged}"/>
 		    </div>
 		</nav>
-		<nav>
-			<h:link value="Log in" outcome="login" rendered="#{not authMb.logged}" />
-			<h:link value="Register" outcome="register" rendered="#{not authMb.logged}"/>
-			<h:commandLink value="Log out" action="#{authMb.logout()}" rendered="#{authMb.logged}"/>
-		</nav>
+		<h1>Welcome to Feedback Posts</h1>
+		<h2>you can create posts and see other content</h2>
 	</h:form>
 </h:body>
 </html>

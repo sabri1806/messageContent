@@ -8,9 +8,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <h:outputStylesheet name="css/bootstrap.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <h:outputStylesheet name="css/style.css" />
-	<h:outputScript name="js/bootstrap.js" />
 </h:head>
 <h:body>
 	<h:form>
@@ -42,9 +40,10 @@
 			<label>Password </label>
 			<h:inputSecret value="#{registerMb.password}" />
 		</div>
-		<h:commandLink action="#{registerMb.register()}" >
-			Send
-		</h:commandLink>
+		<div>
+		<h:commandButton value="Log in" styleClass="btn btn-primary"
+					action="#{registerMb.register}"></h:commandButton>
+		</div>
 	</h:form>
 </h:body>
 </html>

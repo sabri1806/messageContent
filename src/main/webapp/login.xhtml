@@ -8,12 +8,9 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <h:outputStylesheet name="css/bootstrap.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <h:outputStylesheet name="css/style.css" />
-	<h:outputScript name="js/bootstrap.js" />
 </h:head>
 <h:body>
-	
 	<h:form>
 		<nav class="navbar navbar-default">
 		    <div class="navbar-header">
@@ -27,17 +24,20 @@
 		    </div>
 		</nav>
 		<h1>Log In to FeedbackPost</h1>
-		<div>
-			<label>User</label>
-			<h:inputText value="#{authMb.username}" />
+		<div class="row">
+			<div class="col-md-6">
+				<label>User</label>
+				<h:inputText value="#{authMb.username}" />
+			</div>
+			<div class="col-md-6">
+				<label>Password</label>
+				<h:inputSecret value="#{authMb.password}" />
+			</div>
+			<div>
+				<h:commandButton value="Log in" styleClass="btn btn-primary" 
+				action="#{authMb.loggin}"></h:commandButton>
+			</div>
 		</div>
-		<div>
-			<label>Password</label>
-			<h:inputSecret value="#{authMb.password}" />
-		</div>
-		<h:commandLink action="#{authMb.loggin()}" >
-			Log In
-		</h:commandLink>
 	</h:form>
 </h:body>
 </html>

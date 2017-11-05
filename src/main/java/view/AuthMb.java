@@ -21,8 +21,7 @@ public class AuthMb implements Serializable{
 	private String username;
 	private String password;
 	private User currentUser;	
-	@Inject
-	private PostController  postCntr;
+
 	@Inject
 	private UserController userCntr;
 	
@@ -31,12 +30,17 @@ public class AuthMb implements Serializable{
 	}
 	public List<Post> getUserPost(){
 		System.out.println("buscando post");
-		System.out.println(currentUser.getId());
-		return postCntr.getUserPost(currentUser);
+		//System.out.println(currentUser.getId());
+		
+		return userCntr.getCurrentUser().getPosts();
 	}
 	public String loggin() {
 		currentUser = userCntr.getAuthUser(username, password);
 		System.out.println(currentUser);
+		
+		if(currentUser != null) {
+			userCntr.setCurrentUser(currentUser);
+		}
 
 		username = null;
 		password = null;
@@ -45,6 +49,7 @@ public class AuthMb implements Serializable{
 		else
 			return null;
 	}
+	
 	
 	public String logout(){
 		currentUser = null;

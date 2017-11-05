@@ -1,50 +1,59 @@
 <!DOCTYPE html>
-<html  
-	xmlns:f="http://java.sun.com/jsf/core"
+<html xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<title>FeedbackPost</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <h:outputStylesheet name="css/bootstrap.css" />
-    <h:outputStylesheet name="css/bootstrap.css.map" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <h:outputStylesheet name="css/style.css" />
-	<h:outputScript name="js/bootstrap.js" />
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<h:outputStylesheet name="css/bootstrap.css" />
+	<h:outputStylesheet name="css/bootstrap.css.map" />
+	<h:outputStylesheet name="css/style.css" />
+
 </h:head>
 <h:body>
 	<h:form>
 		<nav class="navbar navbar-default">
-		    <div class="navbar-header">
-		      <h:link class="navbar-brand" value="Log in" outcome="login" rendered="#{not authMb.logged}" ></h:link>
-		    </div>
-		    <div class="navbar-header">
-		      <h:link class="navbar-brand" value="Register" outcome="register"  rendered="#{not authMb.logged}"></h:link>
-		    </div>
-		    <div class="navbar-header">
-		      <h:commandLink  class="navbar-brand" value="Log out" action="#{authMb.logout()}" rendered="#{authMb.logged}"/>
-		    </div>
+			<div class="navbar-header">
+				<h:link class="navbar-brand" value="Log in" outcome="login"
+					rendered="#{not authMb.logged}"></h:link>
+			</div>
+			<div class="navbar-header">
+				<h:link class="navbar-brand" value="Register" outcome="register"
+					rendered="#{not authMb.logged}"></h:link>
+			</div>
+			<div class="navbar-header">
+				<h:commandLink class="navbar-brand" value="Log out"
+					action="#{authMb.logout}" rendered="#{authMb.logged}" />
+			</div>
 		</nav>
 	</h:form>
-	<h1 class="title">Welcome 
+	<h1 class="title">
+		Welcome
 		<h:outputText value="#{authMb.currentUser.username}" />
 	</h1>
-		<h2>You can see and save all your post
+	<h2>You can see and save all your post</h2>
+	<div>
 		
-		</h2>
-	<div>
-	<h:dataTable value="#{authMb.userPost}" var="post">
-		<h:column>#{post.message}</h:column>
-		<h:column>#{post.dateMessage}</h:column>
-	</h:dataTable>
-	<div>
-	<textarea class="form-control" rows="2" placeholder="Enter your post here"></textarea>
-	</div>
-	<div class="next-button">
-	<button type="submit" class="btn btn-info">Enviar</button>
-	</div>
-	
+		<h:dataTable value="#{homeMb.posts}" var="post">
+			<h:column>#{post.userName}</h:column>
+			<h:column>#{post.message}</h:column>
+			<h:column>#{post.date}</h:column>
+		
+		</h:dataTable>
+		<h:form>
+			<div>
+				<h:inputText placeholder="Enter your post here"
+					value="#{homeMb.message}" />
+			</div>
+			<div class="next-button">
+				<h:commandButton value="Enviar" styleClass="btn btn-info"
+					action="#{homeMb.savePost}"></h:commandButton>
+			</div>
+
+		</h:form>
+
+
 	</div>
 </h:body>
 </html>

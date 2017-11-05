@@ -1,13 +1,30 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 	
 	private int id;
 	private String mail;
 	private String username;
 	private String password;
+	private List<Post> posts = new ArrayList<Post>();
 	
 	
+	
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void addPost(Post post) {
+		this.posts.add(post);
+	}
+	
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
 	public User(int id, String mail, String username, String password) {
 		super();
 		this.id = id;

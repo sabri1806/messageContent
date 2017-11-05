@@ -21,7 +21,8 @@ public class RegisterMb {
 	public String register(){
 		User user = new User(userId, mail, username, password);
 		userCntr.register(user);
-		return "index";
+		//mje de registrado en forma correcta
+		return "login";
 	}
 
 	public String getUsername() {

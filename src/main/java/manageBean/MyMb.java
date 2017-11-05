@@ -23,13 +23,8 @@ public class MyMb {
 	private int idPost;
 	private String message;
 	
-	
-	
-	
 	public void add() {
 
-
-		
 	}
 	
 	public List<User> getUser(){
@@ -68,7 +63,21 @@ public class MyMb {
 		this.passWord = passWord;
 	}
 
-	
-	
+	public int getIdPost() {
+		return idPost;
+	}
+
+	public void setIdPost(int idPost) {
+		this.idPost = idPost;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 
 }

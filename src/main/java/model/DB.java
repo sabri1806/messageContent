@@ -2,9 +2,12 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Singleton;
+
+import dto.UserPostDto;
 @Singleton
 public class DB {
 		
@@ -20,13 +23,20 @@ public class DB {
 		user2.setId(nextUserId());
 		users.add(user2);
 		
-		posts.add(new Post(1, "p",  new Date(), "este es mi primer post que emocion! :P ",1));
-		posts.add(new Post(2, "p", new Date(), "otro post que escribi recien ",1));
-		posts.add(new Post(3, "a", new Date(), "sigo escribiendo ",2));
-		posts.add(new Post(4, "a", new Date(), "esto es un monton de posts ya",2));
+		user.addPost(new Post(1, new Date(), "este es mi primer post que emocion! :P "));
+		user.addPost(new Post(2, new Date(), "otro post que escribi recien "));
+		user2.addPost(new Post(3, new Date(), "sigo escribiendo posts "));
+		user2.addPost(new Post(4, new Date(), "estos ya son un monton de posts"));
 	}
-	
-	public List <Post>getPosts(){
+	private List <UserPostDto> userpostdto = new ArrayList<>();
+	public List<Post> getPosts(){
+		posts = new ArrayList<>();
+		for (User user : users) {
+			posts.addAll(user.getPosts());
+			//userpostdto.add(new userpostdto(user.getUsername(), date, message));
+		}
+		
+		System.out.println(posts);
 		return posts;
 	}
 	public void addPost(Post ps) {
