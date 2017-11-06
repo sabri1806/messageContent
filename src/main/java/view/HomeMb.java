@@ -1,10 +1,7 @@
 package view;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -24,16 +21,18 @@ public class HomeMb {
 	private int id;
 	private String message;
 	
-	public void savePost() {
-		int nextId = postCntr.getAllPost().size()+1;
+	public String savePost() {
+		//int nextId = postCntr.getAllPost().size()+1;
 		System.out.println(this.message);
-		System.out.println(nextId);
+	//	System.out.println(nextId);
 
-		Post post = new Post(nextId, new Date(), this.getMessage());
+		Post post = new Post(new Date(), this.getMessage());
 		userController.getCurrentUser().addPost(post);
+		userController.save(userController.getCurrentUser());
+		
+		return "";
 	}
 	
-
 	public int getId() {
 		return id;
 	}

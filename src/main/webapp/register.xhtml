@@ -11,8 +11,9 @@
     <h:outputStylesheet name="css/style.css" />
 </h:head>
 <h:body>
-	<h:form>
-	<nav class="navbar navbar-default">
+<f:view>
+	<h:form class="form-horizontal">
+		<nav class="navbar navbar-default">
 		    <div class="navbar-header">
 		      <h:link class="navbar-brand" value="Home" outcome="home" rendered="#{not authMb.logged}" ></h:link>
 		    </div>
@@ -23,27 +24,38 @@
 		      <h:commandLink  class="navbar-brand" value="Log out" action="#{authMb.logout()}" rendered="#{authMb.logged}"/>
 		    </div>
 		</nav>
-		<h1>User Registry</h1>
+		<div class="row" style="display: inline-block;">
+			<h1>User Registry</h1>
+			<!--  div class="form-group">
+				<label class= "control-label col-sm-2">Id</label>
+				<div class="col-sm-10">
+		    			 <h:inputText value="#{registerMb.userId}" autocomplete="off" class="form-control" id="email"/>
+		  			</div>
+			</div-->
+			<div class="form-group">
+				<label class= "control-label col-sm-2">User</label>
+				<div class= "col-sm-10">
+				<h:inputText value="#{registerMb.username}" autocomplete="off" class="form-control" placeholder="Enter your user"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class= "control-label col-sm-2">Mail</label>
+				<div class= "col-sm-10">
+				<h:inputText value="#{registerMb.mail}" autocomplete="off" class="form-control" placeholder="Enter your mail"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class= "control-label col-sm-2">Password</label>
+				<div class="col-sm-10">
+				<h:inputSecret value="#{registerMb.password}" autocomplete="off" class="form-control" placeholder="Enter your password"/>
+				</div>
+			</div>
 			<div>
-			<label>User Id </label>
-			<h:inputText value="#{registerMb.userId}" />
-		</div>
-		<div>
-			<label>User</label>
-			<h:inputText value="#{registerMb.username}" />
-		</div>
-		<div>
-			<label>User Mail </label>
-			<h:inputText value="#{registerMb.mail}" />
-		</div>
-		<div>
-			<label>Password </label>
-			<h:inputSecret value="#{registerMb.password}" />
-		</div>
-		<div>
-		<h:commandButton value="Log in" styleClass="btn btn-primary"
-					action="#{registerMb.register}"></h:commandButton>
+			<h:commandButton value="Register now" styleClass="btn btn-primary btn-lg"
+						action="#{registerMb.register}" style="position:relative;"></h:commandButton>
+			</div>
 		</div>
 	</h:form>
+</f:view>
 </h:body>
 </html>

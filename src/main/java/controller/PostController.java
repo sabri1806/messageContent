@@ -7,6 +7,9 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import dto.UserPostDto;
 import model.DB;
@@ -18,51 +21,60 @@ public class PostController {
 
 	@Inject
 	private DB db;
-	
+
 	@Inject
 	private UserController userController;
-	
-//	create(User user,String content)
-		//	Crea un post en la base de datos
-		//	Le asigna la fecha actual
-		//	Le asigna un id automático.
-	
-//	all():List<Post>
-		//	Devuelve todos los post
-	
-//	by(User user): List<Post>
-		//	Devuelve todos los post de un usuario
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	// create(User user,String content)
+	// Crea un post en la base de datos
+	// Le asigna la fecha actual
+	// Le asigna un id automático.
+
+	// all():List<Post>
+	// Devuelve todos los post
+
+	// by(User user): List<Post>
+	// Devuelve todos los post de un usuario
 
 	public void getPost(String username, String message) {
-		
+
 	}
-	
-	
-	public List<UserPostDto> getAllPost(){
+
+	public List<UserPostDto> getAllPost() {
 		System.out.println("estoy en get all post");
 		List<UserPostDto> userPostDto = new ArrayList<>();
-		
-		for(User us : userController.getAllUsers()) {
-			for(Post ps : us.getPosts()) {
-				userPostDto.add(new UserPostDto(us.getUsername(),ps.getDateMessage(), ps.getMessage()));
+
+		String hql = "Select u from User u";
+		TypedQuery<User> q = entityManager.createQuery(hql, User.class);
+		//q.setParameter("message", userPostDto);// en este caso no seria userPostDto??
+
+		List<User> u = q.getResultList(); // este p deberia estar del lado de userController.getAll..!?
+
+		for (User us : u) {
+			for (Post ps : us.getPosts()) {
+				userPostDto.add(new UserPostDto(us.getUsername(), ps.getDate(), ps.getMessage()));
 			}
-			
+
 		}
 		return userPostDto;
 	}
+
 	public void createPost(User user) {
 		System.out.println("creando1");
 	}
-	
-	public List<Post> getUserPost(User user){
-//		List<Post> userPost = new ArrayList<>();
-//		for(Post p : getAllPost() ) {
-//			if(p.getUserId()== user.getId()) {
-//				userPost.add(p);
-//			}
-//			
-//		}
+
+	public List<Post> getUserPost(User user) {
+		// List<Post> userPost = new ArrayList<>();
+		// for(Post p : getAllPost() ) {
+		// if(p.getUserId()== user.getId()) {
+		// userPost.add(p);
+		// }
+		//
+		// }
 		return user.getPosts();
 	}
-	
+
 }

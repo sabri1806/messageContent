@@ -1,0 +1,8 @@
+<tomee>
+	<Resource id="mysqlConf" type="DataSource">
+	    JdbcDriver  com.mysql.jdbc.Driver
+	    JdbcUrl jdbc:mysql://localhost/messagecontent
+	    UserName    root
+	    Password    root
+	</Resource>
+</tomee>

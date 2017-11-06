@@ -34,12 +34,12 @@
 	</h1>
 	<h2>You can see and save all your post</h2>
 	<div>
-		
+
 		<h:dataTable value="#{homeMb.posts}" var="post">
 			<h:column>#{post.userName}</h:column>
 			<h:column>#{post.message}</h:column>
 			<h:column>#{post.date}</h:column>
-		
+
 		</h:dataTable>
 		<h:form>
 			<div>
@@ -47,7 +47,7 @@
 					value="#{homeMb.message}" />
 			</div>
 			<div class="next-button">
-				<h:commandButton value="Enviar" styleClass="btn btn-info"
+				<h:commandButton value="Send post" styleClass="btn btn-info"
 					action="#{homeMb.savePost}"></h:commandButton>
 			</div>
 

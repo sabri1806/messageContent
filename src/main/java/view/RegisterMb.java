@@ -19,8 +19,11 @@ public class RegisterMb {
 
 	
 	public String register(){
-		User user = new User(userId, mail, username, password);
-		userCntr.register(user);
+		User user = new User(mail, username, password);
+		//este lo hacia con el singleton
+		//userCntr.register(user);
+		System.out.println("registrando usuario");
+		userCntr.create(user);
 		//mje de registrado en forma correcta
 		return "login";
 	}

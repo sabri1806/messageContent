@@ -15,18 +15,18 @@ public class DB {
 	private List<Post> posts = new ArrayList<>();
 	
 	public DB() {
-		User user = new User(1,"p","p","p");
+		/*User user = new User("p","p","p");
 		user.setId(nextUserId());
 		users.add(user);
 		
-		User user2 = new User(1,"a","a","a");
+		User user2 = new User("a","a","a");
 		user2.setId(nextUserId());
 		users.add(user2);
 		
-		user.addPost(new Post(1, new Date(), "este es mi primer post que emocion! :P "));
-		user.addPost(new Post(2, new Date(), "otro post que escribi recien "));
-		user2.addPost(new Post(3, new Date(), "sigo escribiendo posts "));
-		user2.addPost(new Post(4, new Date(), "estos ya son un monton de posts"));
+		user.addPost(new Post(new Date(), "este es mi primer post que emocion! :P "));
+		user.addPost(new Post(new Date(), "otro post que escribi recien "));
+		user2.addPost(new Post(new Date(), "sigo escribiendo posts "));
+		user2.addPost(new Post(new Date(), "estos ya son un monton de posts"));*/
 	}
 	private List <UserPostDto> userpostdto = new ArrayList<>();
 	public List<Post> getPosts(){
