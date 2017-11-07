@@ -46,12 +46,6 @@ public class UserController {
 
 	public User getAuthUser(String username, String password) {
 		
-		//aca tengo que reemplazar obtener user por entity manager en lugar de la clase db
-//		for (User user : db.getUsers()) {
-//			if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-//				return user;
-//			}
-//		}
 		String hql = "Select u from User u where u.username = :username";
 		TypedQuery<User> q = entityManager.createQuery(hql, User.class);
 		q.setParameter("username", username);
@@ -98,15 +92,6 @@ public class UserController {
 		return false;
 	}
 
-	//en lugar de agregarlo ten
-	/*public void register(User user) {
-		if (verifyIfExist(user.getUsername())) {
-			throw new RuntimeException("User already exists");
-		}
-		user.setId(db.nextUserId());
-		db.getUsers().add(user);
-	}*/
-	 
 	public List<User> getAllUsers() {
 		return db.getUsers();
 	}

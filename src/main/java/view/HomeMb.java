@@ -22,9 +22,7 @@ public class HomeMb {
 	private String message;
 	
 	public String savePost() {
-		//int nextId = postCntr.getAllPost().size()+1;
 		System.out.println(this.message);
-	//	System.out.println(nextId);
 
 		Post post = new Post(new Date(), this.getMessage());
 		userController.getCurrentUser().addPost(post);
