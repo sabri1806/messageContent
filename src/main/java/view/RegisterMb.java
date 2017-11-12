@@ -1,13 +1,16 @@
 package view;
 
+import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import controller.UserController;
 import model.User;
 
-@Named
-public class RegisterMb {
+import java.io.Serializable;
+
+@ManagedBean
+public class RegisterMb implements Serializable {
 
 	@Inject
 	private UserController userCntr;
@@ -16,6 +19,7 @@ public class RegisterMb {
 	private String username;
 	private String password;
 	private String mail;
+	private String usernameErrorMsg;
 
 	
 	public String register(){
@@ -28,6 +32,11 @@ public class RegisterMb {
 		return "login";
 	}
 
+	public void validateUsername(){
+		if (this.username.length()> 3){
+			this.setUsernameErrorMsg("error: muy largo");
+		}
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -58,7 +67,14 @@ public class RegisterMb {
 
 	public void setMail(String mail) {
 		this.mail = mail;
-	}	
-	
-	
+	}
+
+
+	public String getUsernameErrorMsg() {
+		return usernameErrorMsg;
+	}
+
+	public void setUsernameErrorMsg(String usernameErrorMsg) {
+		this.usernameErrorMsg = usernameErrorMsg;
+	}
 }
