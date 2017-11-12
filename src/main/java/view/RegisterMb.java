@@ -1,5 +1,7 @@
 package view;
 
+import javax.faces.bean.RequestScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -17,16 +19,13 @@ public class RegisterMb {
 	private String password;
 	private String mail;
 
-	
 	public String register(){
 		User user = new User(mail, username, password);
-		//este lo hacia con el singleton
-		//userCntr.register(user);
-		System.out.println("registrando usuario");
 		userCntr.create(user);
 		//mje de registrado en forma correcta
 		return "login";
 	}
+
 
 	public String getUsername() {
 		return username;
@@ -58,7 +57,6 @@ public class RegisterMb {
 
 	public void setMail(String mail) {
 		this.mail = mail;
-	}	
-	
-	
+	}
+
 }

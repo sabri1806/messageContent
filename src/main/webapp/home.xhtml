@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<title>FeedbackPost</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,15 +16,15 @@
 		<nav class="navbar navbar-default">
 			<div class="navbar-header">
 				<h:link class="navbar-brand" value="Log in" outcome="login"
-					rendered="#{not authMb.logged}"></h:link>
+						rendered="#{not authMb.logged}"></h:link>
 			</div>
 			<div class="navbar-header">
 				<h:link class="navbar-brand" value="Register" outcome="register"
-					rendered="#{not authMb.logged}"></h:link>
+						rendered="#{not authMb.logged}"></h:link>
 			</div>
 			<div class="navbar-header">
 				<h:commandLink class="navbar-brand" value="Log out"
-					action="#{authMb.logout}" rendered="#{authMb.logged}" />
+							   action="#{authMb.logout}" rendered="#{authMb.logged}" />
 			</div>
 		</nav>
 	</h:form>
@@ -44,11 +44,11 @@
 		<h:form>
 			<div>
 				<h:inputText placeholder="Enter your post here"
-					value="#{homeMb.message}" />
+							 value="#{homeMb.message}" />
 			</div>
 			<div class="next-button">
 				<h:commandButton value="Send post" styleClass="btn btn-info"
-					action="#{homeMb.savePost}"></h:commandButton>
+								 action="#{homeMb.savePost}"></h:commandButton>
 			</div>
 
 		</h:form>

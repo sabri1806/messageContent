@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html  
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+<html
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<title>FeedbackPost</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <h:outputStylesheet name="css/bootstrap.css" />
-    <h:outputStylesheet name="css/style.css" />
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<h:outputStylesheet name="css/bootstrap.css" />
+	<h:outputStylesheet name="css/style.css" />
 </h:head>
 <h:body>
-	
+
 	<h:form>
-	<nav class="navbar navbar-default">
-		    <div class="navbar-header">
-		      <h:link class="navbar-brand" value="Log in" outcome="login" rendered="#{not authMb.logged}" ></h:link>
-		    </div>
-		    <div class="navbar-header">
-		      <h:link class="navbar-brand" value="Register" outcome="register"  rendered="#{not authMb.logged}"></h:link>
-		    </div>
-		    <div class="navbar-header">
-		      <h:commandLink  class="navbar-brand" value="Log out" action="#{authMb.logout()}" rendered="#{authMb.logged}"/>
-		    </div>
+		<nav class="navbar navbar-default">
+			<div class="navbar-header">
+				<h:link class="navbar-brand" value="Log in" outcome="login" rendered="#{not authMb.logged}" ></h:link>
+			</div>
+			<div class="navbar-header">
+				<h:link class="navbar-brand" value="Register" outcome="register"  rendered="#{not authMb.logged}"></h:link>
+			</div>
+			<div class="navbar-header">
+				<h:commandLink  class="navbar-brand" value="Log out" action="#{authMb.logout()}" rendered="#{authMb.logged}"/>
+			</div>
 		</nav>
 		<h1>Welcome to Feedback Posts</h1>
 		<h2>you can create posts and see other content</h2>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<title>FeedbackPost</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,15 +15,15 @@
 			<nav class="navbar navbar-default">
 				<div class="navbar-header">
 					<h:link class="navbar-brand" value="Home" outcome="home"
-						rendered="#{not authMb.logged}"></h:link>
+							rendered="#{not authMb.logged}"></h:link>
 				</div>
 				<div class="navbar-header">
 					<h:link class="navbar-brand" value="Log in" outcome="login"
-						rendered="#{not authMb.logged}"></h:link>
+							rendered="#{not authMb.logged}"></h:link>
 				</div>
 				<div class="navbar-header">
 					<h:commandLink class="navbar-brand" value="Log out"
-						action="#{authMb.logout()}" rendered="#{authMb.logged}" />
+								   action="#{authMb.logout()}" rendered="#{authMb.logged}" />
 				</div>
 			</nav>
 			<div class="row" style="display: inline-block;">
@@ -32,8 +32,8 @@
 					<label class="control-label col-sm-2">User</label>
 					<div class="col-sm-10">
 						<h:inputText id="name" value="#{registerMb.username}"
-							autocomplete="off" class="form-control info"
-							placeholder="Enter your user" />
+									 autocomplete="off" class="form-control info"
+									 placeholder="Enter your user" />
 						<h:message for="name" Styleclass="alert alert-error"/>
 					</div>
 				</div>
@@ -41,20 +41,20 @@
 					<label class="control-label col-sm-2">Mail</label>
 					<div class="col-sm-10">
 						<h:inputText value="#{registerMb.mail}" autocomplete="off"
-							class="form-control" placeholder="Enter your mail" />
+									 class="form-control" placeholder="Enter your mail" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2">Pass</label>
 					<div class="col-sm-10">
 						<h:inputSecret value="#{registerMb.password}" autocomplete="off"
-							class="form-control" placeholder="Enter your password" />
+									   class="form-control" placeholder="Enter your password" />
 					</div>
 				</div>
 				<div>
 					<h:commandButton value="Register now"
-						styleClass="btn btn-primary btn-lg"
-						action="#{registerMb.register}" style="position:relative;"></h:commandButton>
+									 styleClass="btn btn-primary btn-lg"
+									 action="#{registerMb.register}" style="position:relative;"></h:commandButton>
 				</div>
 			</div>
 		</h:form>

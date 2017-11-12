@@ -22,7 +22,6 @@ public class HomeMb {
 	private String message;
 	
 	public String savePost() {
-		System.out.println(this.message);
 
 		Post post = new Post(new Date(), this.getMessage());
 		userController.getCurrentUser().addPost(post);
@@ -45,10 +44,7 @@ public class HomeMb {
 	}
 	
 	public List<UserPostDto> getPosts(){
-		System.out.println("estoy en get posts de homemb");
 		return postCntr.getAllPost();
 	}
-	
-	
-	
+
 }
