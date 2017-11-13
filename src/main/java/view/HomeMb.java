@@ -43,7 +43,7 @@ public class HomeMb {
 
 	public void validatePost(){
 		if (this.getMessage().length()<2){
-			this.setPostErrorMsg("Are you sure you don't want to write a post? :p");
+			this.setPostErrorMsg("You can create a post here");
 		}else {
 			this.setPostErrorMsg("");
 		}
