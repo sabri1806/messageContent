@@ -41,6 +41,14 @@ public class UserController {
 		return currentUser;
 	}
 
+	public  User getFreshUser(int id) {
+		String hql = "Select u from User u where u.id = :id";
+		TypedQuery<User> q = entityManager.createQuery(hql, User.class);
+		q.setParameter("id", id);
+
+		return q.getResultList().get(0);
+	}
+
 	public User getAuthUser(String username, String password) {
 		
 		String hql = "Select u from User u where u.username = :username";

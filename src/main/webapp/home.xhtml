@@ -2,7 +2,8 @@
 <html xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 	<title>FeedbackPost</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,68 +15,100 @@
 
 </h:head>
 <h:body>
-	<h:form>
-		<nav class="navbar navbar-default">
-			<div class="navbar-header">
-				<h:link class="navbar-brand" value="Log in" outcome="login"
-					rendered="#{not authMb.logged}"/>
-			</div>
-			<div class="navbar-header">
-				<h:link class="navbar-brand" value="Register" outcome="register"
-					rendered="#{not authMb.logged}"/>
-			</div>
-			<div class="navbar-header">
-				<h:commandLink class="navbar-brand" value="Log out"
-					action="#{authMb.logout}" rendered="#{authMb.logged}" />
-			</div>
-		</nav>
-	</h:form>
-	<div class="container">
-		<h1 class="title">
-			Welcome
-			<h:outputText value="#{authMb.currentUser.username}" />
-		</h1>
-		<h2>You can see and save all your post</h2>
-		<div class="row">
-			<div class="col-md-8">
-				<h:dataTable value="#{homeMb.posts}" var="post">
-					<h:column>#{post.userName}</h:column>
-					<h:column>#{post.message}</h:column>
-					<h:column>#{post.date}</h:column>
-					<h:column>
-						<h:form>
-							<div class="form-group">
-								<h:inputText class="form-control" value="#{homeMb.currentComment}" a:placeholder="Enter Comment"/>
-								<h:commandButton styleClass="btn btn-success" action="#{homeMb.createComment(post)}" value="Comment"/>
-							</div>
-						</h:form>
-					</h:column>
+	<b:row class="well" style="height: 80px; background-color: #ff9800;">
+		<b:column class="col-md-4">
+			<h:form>
+				<nav class="navbar">
+					<div class="navbar-header">
+						<h:link class="navbar-brand" value="Log in" outcome="login"
+								rendered="#{not authMb.logged}"/>
+					</div>
+					<div class="navbar-header">
+						<h:link class="navbar-brand" value="Register" outcome="register"
+								rendered="#{not authMb.logged}"/>
+					</div>
+					<div class="navbar-header">
+						<h:commandLink class="navbar-brand" value="Log out"
+									   action="#{authMb.logout}" rendered="#{authMb.logged}" />
+					</div>
+				</nav>
+			</h:form>
+		</b:column>
+		<b:column class="col-md-4">
+			<h1 class="title" style="margin-top:0px">
+				Welcome <h:outputText value="#{authMb.currentUser.username}" />
+			</h1>
+		</b:column>
+	</b:row>
 
-						<h:column>#{post.comment}</h:column>
-				</h:dataTable>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<h:form>
-					<div class="form-group">
-						<label class="control-label col-sm-2">Enter your post</label>
-						<div class="col-sm-10">
-							<h:inputTextarea id="post" class="form-control" rows="3" placeholder="Enter your post here"
-								value="#{homeMb.message}">
-								<f:ajax event="blur" listener="#{homeMb.validatePost()}"
+	<b:container>
+
+		<!--Header Page-->
+		<b:row>
+			<h2>You can see and save all your post</h2>
+			<h:messages style="color:green" globalOnly="true"/>
+		</b:row>
+		<!--Post Form-->
+		<b:row>
+			<h:form>
+				<b:row class="col-md-offset-4 col-md-4">
+					<b:column>
+						<label class="control-label">Enter your post</label>
+						<h:inputTextarea id="post" class="form-control" rows="3" a:placeholder="Enter your post here"
+										 value="#{homeMb.message}">
+							<f:ajax event="blur" listener="#{homeMb.validatePost()}"
 									render="postError" />
-							</h:inputTextarea>
-							<h:outputText id="postError" value="#{homeMb.postErrorMsg}" />
-						</div>
-					</div>
-					<div class="next-button">
+						</h:inputTextarea>
+						<h:outputText id="postError" value="#{homeMb.postErrorMsg}" />
 						<h:commandButton value="Send post" styleClass="btn btn-info"
-							action="#{homeMb.savePost}" />
-					</div>
-				</h:form>
-			</div>
-		</div>
-	</div>
+										 action="#{homeMb.savePost}" />
+					</b:column>
+				</b:row>
+			</h:form>
+		</b:row>
+		<!--Posts List-->
+		<b:row style="margin-top:50px" class="well">
+			<ui:repeat value="#{homeMb.posts}" var="post">
+				<b:row>
+					<b:column class="col-md-2">
+						<h:form id="deleteForm">
+							<h:commandLink styleClass="btn btn-default btn-sm" action="#{homeMb.deletePost(post)}">
+								<i class="fa fa-trash" aria-hidden="true"></i>
+							</h:commandLink>
+						</h:form>
+					</b:column>
+					<b:column class="col-md-2">
+						#{post.userName}
+					</b:column>
+					<b:column class="col-md-2">
+						#{post.message}
+					</b:column>
+					<b:column class="col-md-2">
+						#{post.date}
+					</b:column>
+					<b:column class="col-md-2">
+						<h:form>
+							<b:row>
+								<b:column class="col-md-6">
+									<h:inputText class="form-control" value="#{homeMb.currentComment}" a:placeholder="Enter Comment"/>
+								</b:column>
+								<b:column class="col-md-3">
+									<h:commandLink styleClass="btn btn-default btn-sm" action="#{homeMb.createComment(post)}">
+										<i class="fa fa-comment" aria-hidden="true"></i>
+									</h:commandLink>
+								</b:column>
+							</b:row>
+						</h:form>
+					</b:column>
+					<b:column class="col-md-2">
+						<ui:repeat value="#{post.comments}" var="comment">
+							#{comment.comment}
+						</ui:repeat>
+					</b:column>
+				</b:row>
+			</ui:repeat>
+		</b:row>
+
+	</b:container>
 </h:body>
 </html>

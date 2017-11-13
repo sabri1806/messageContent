@@ -1,6 +1,9 @@
 package dto;
 
 
+import model.Comment;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserPostDto {
@@ -12,14 +15,14 @@ public class UserPostDto {
 	private String userName;
 	private String date;
 	private String message;
-	private String comment;
+	private List<Comment> comments = new ArrayList<>();
 	
-	public UserPostDto(int id,String userName,String date, String message, String comments) {
+	public UserPostDto(int id,String userName,String date, String message, List comments) {
 		this.id = id;
 		this.userName = userName;
 		this.date = date;
 		this.message = message;
-		this.comment = comments;
+		this.comments = comments;
 	}
 
 	public String getUserName() {
@@ -42,11 +45,12 @@ public class UserPostDto {
 		this.id = id;
 	}
 
-	public String getComment() {
-		return comment;
+
+	public List<Comment> getComments() {
+		return comments;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 }

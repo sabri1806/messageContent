@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -10,7 +11,14 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @NotNull
+    @Size(min=2,max=255)
     private String comment;
+
+   /* @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;*/
 
     public Comment(String comment) {
         this.comment = comment;
@@ -31,4 +39,12 @@ public class Comment {
     public String getComment() {
         return comment;
     }
+
+   /* public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }*/
 }

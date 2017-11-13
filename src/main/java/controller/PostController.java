@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -37,7 +39,7 @@ public class PostController {
 				for (Comment c :ps.getComments()){
 					result += "-" + c.getComment();
 				}
-				userPostDto.add(new UserPostDto(ps.getId(),us.getUsername(), ps.getDate(), ps.getMessage(), result));
+				userPostDto.add(new UserPostDto(ps.getId(),us.getUsername(), ps.getDate(), ps.getMessage(), ps.getComments()));
 			}
 
 		}
@@ -64,6 +66,11 @@ public class PostController {
 	public List<Post> getUserPost(User user) {
 		
 		return user.getPosts();
+	}
+
+	public void deletePost(int postId) {
+		Post p = getPostById(postId);
+		entityManager.remove(p);
 	}
 
 }
