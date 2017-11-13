@@ -21,6 +21,7 @@ public class RegisterMb implements Serializable {
 	private String password;
 	private String mail;
 	private String usernameErrorMsg;
+	private String mailErrorMsg;
 
 	public String register(){
 		User user = new User(mail, username, password);
@@ -30,10 +31,17 @@ public class RegisterMb implements Serializable {
 	}
 
 	public void validateUsername(){
-		if (this.username.length()> 3){
-			this.setUsernameErrorMsg("error: muy largo");
+		if (this.username.length() < 4 || this.username.length()>= 8  ){
+			this.setUsernameErrorMsg("You must enter an username between 4 and 8 characters");
 		}
 	}
+
+	public void validateMail(){
+		if (this.mail == null || !this.mail.endsWith("@mail.com") ) {
+			this.setMailErrorMsg("Insert a valid mail please. Eg: pepe@mail.com");
+		}
+	}
+
 
 	public String getUsername() {
 		return username;
@@ -74,5 +82,14 @@ public class RegisterMb implements Serializable {
 	public void setUsernameErrorMsg(String usernameErrorMsg) {
 		this.usernameErrorMsg = usernameErrorMsg;
 	}
+
+	public String getMailErrorMsg() {
+		return mailErrorMsg;
+	}
+
+	public void setMailErrorMsg(String mailErrorMsg) {
+		this.mailErrorMsg = mailErrorMsg;
+	}
+
 
 }

@@ -20,6 +20,7 @@ public class HomeMb {
 	private UserController  userController;
 	private int id;
 	private String message;
+	private String postErrorMsg;
 	
 	public String savePost() {
 
@@ -29,6 +30,13 @@ public class HomeMb {
 		
 		return "";
 	}
+
+	public void validatePost(){
+		if (this.postErrorMsg == null){
+			this.setPostErrorMsg(" Are you sure you do not want to write a post? :p");
+		}
+	}
+
 	
 	public int getId() {
 		return id;
@@ -47,4 +55,12 @@ public class HomeMb {
 		return postCntr.getAllPost();
 	}
 
+
+	public String getPostErrorMsg() {
+		return postErrorMsg;
+	}
+
+	public void setPostErrorMsg(String postErrorMsg) {
+		this.postErrorMsg = postErrorMsg;
+	}
 }

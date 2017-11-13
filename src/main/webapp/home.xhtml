@@ -16,44 +16,54 @@
 		<nav class="navbar navbar-default">
 			<div class="navbar-header">
 				<h:link class="navbar-brand" value="Log in" outcome="login"
-						rendered="#{not authMb.logged}"></h:link>
+					rendered="#{not authMb.logged}"/>
 			</div>
 			<div class="navbar-header">
 				<h:link class="navbar-brand" value="Register" outcome="register"
-						rendered="#{not authMb.logged}"></h:link>
+					rendered="#{not authMb.logged}"/>
 			</div>
 			<div class="navbar-header">
 				<h:commandLink class="navbar-brand" value="Log out"
-							   action="#{authMb.logout}" rendered="#{authMb.logged}" />
+					action="#{authMb.logout}" rendered="#{authMb.logged}" />
 			</div>
 		</nav>
 	</h:form>
-	<h1 class="title">
-		Welcome
-		<h:outputText value="#{authMb.currentUser.username}" />
-	</h1>
-	<h2>You can see and save all your post</h2>
-	<div>
-
-		<h:dataTable value="#{homeMb.posts}" var="post">
-			<h:column>#{post.userName}</h:column>
-			<h:column>#{post.message}</h:column>
-			<h:column>#{post.date}</h:column>
-
-		</h:dataTable>
-		<h:form>
-			<div>
-				<h:inputText placeholder="Enter your post here"
-							 value="#{homeMb.message}" />
+	<div class="container">
+		<h1 class="title">
+			Welcome
+			<h:outputText value="#{authMb.currentUser.username}" />
+		</h1>
+		<h2>You can see and save all your post</h2>
+		<div class="row">
+			<div class="col-md-8">
+				<h:dataTable value="#{homeMb.posts}" var="post">
+					<h:column>#{post.userName}</h:column>
+					<h:column>#{post.message}</h:column>
+					<h:column>#{post.date}</h:column>
+				</h:dataTable>
 			</div>
-			<div class="next-button">
-				<h:commandButton value="Send post" styleClass="btn btn-info"
-								 action="#{homeMb.savePost}"></h:commandButton>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h:form>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Enter your post</label>
+						<div clas="col-sm-10">
+							<h:inputTextarea id="post" class="form-control" rows="3" placeholder="Enter your post here"
+								value="#{homeMb.message}">
+								<f:ajax event="blur" listener="#{homeMb.validatePost()}"
+									render="postError" />
+							</h:inputTextarea>
+							<h:outputText id="postError" value="#{homeMb.postErrorMsg}" />
+						</div>
+					</div>
+					<div class="next-button">
+						<h:commandButton value="Send post" styleClass="btn btn-info"
+							action="#{homeMb.savePost}" />
+					</div>
+				</h:form>
 			</div>
-
-		</h:form>
-
-
+		</div>
 	</div>
 </h:body>
 </html>
