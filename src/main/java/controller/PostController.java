@@ -12,6 +12,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import dto.UserPostDto;
+import javafx.geometry.Pos;
+import model.Comment;
 import model.DB;
 import model.Post;
 import model.User;
@@ -23,24 +25,40 @@ public class PostController {
 	private EntityManager entityManager;
 
 	public List<UserPostDto> getAllPost() {
-		System.out.println("estoy en get all post");
 		List<UserPostDto> userPostDto = new ArrayList<>();
 
 		String hql = "Select u from User u";
 		TypedQuery<User> q = entityManager.createQuery(hql, User.class);
 
-		List<User> u = q.getResultList(); 
+		List<User> u = q.getResultList();
 		for (User us : u) {
 			for (Post ps : us.getPosts()) {
-				userPostDto.add(new UserPostDto(us.getUsername(), ps.getDate(), ps.getMessage()));
+				String result = "";
+				for (Comment c :ps.getComments()){
+					result += "-" + c.getComment();
+				}
+				userPostDto.add(new UserPostDto(ps.getId(),us.getUsername(), ps.getDate(), ps.getMessage(), result));
 			}
 
 		}
 		return userPostDto;
 	}
 
-	public void createPost(User user) {
-		System.out.println("creando1");
+	public Post getPostById(int id) {
+
+		String hql = "Select p from Post p where p.id = :id";
+		TypedQuery<Post> q = entityManager.createQuery(hql, Post.class);
+		q.setParameter("id", id);
+
+		List<Post> p = q.getResultList();
+
+		return p.get(0);
+	}
+
+	public void save(Post post) {
+
+		entityManager.merge(post);
+		entityManager.flush();
 	}
 
 	public List<Post> getUserPost(User user) {

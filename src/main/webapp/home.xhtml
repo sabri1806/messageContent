@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>FeedbackPost</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -40,6 +42,16 @@
 					<h:column>#{post.userName}</h:column>
 					<h:column>#{post.message}</h:column>
 					<h:column>#{post.date}</h:column>
+					<h:column>
+						<h:form>
+							<div class="form-group">
+								<h:inputText class="form-control" value="#{homeMb.currentComment}" a:placeholder="Enter Comment"/>
+								<h:commandButton styleClass="btn btn-success" action="#{homeMb.createComment(post)}" value="Comment"/>
+							</div>
+						</h:form>
+					</h:column>
+
+						<h:column>#{post.comment}</h:column>
 				</h:dataTable>
 			</div>
 		</div>
@@ -48,7 +60,7 @@
 				<h:form>
 					<div class="form-group">
 						<label class="control-label col-sm-2">Enter your post</label>
-						<div clas="col-sm-10">
+						<div class="col-sm-10">
 							<h:inputTextarea id="post" class="form-control" rows="3" placeholder="Enter your post here"
 								value="#{homeMb.message}">
 								<f:ajax event="blur" listener="#{homeMb.validatePost()}"

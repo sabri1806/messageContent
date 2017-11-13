@@ -8,6 +8,7 @@ import javax.inject.Named;
 import controller.PostController;
 import controller.UserController;
 import dto.UserPostDto;
+import model.Comment;
 import model.Post;
 
 @Named
@@ -21,6 +22,7 @@ public class HomeMb {
 	private int id;
 	private String message;
 	private String postErrorMsg;
+	private String currentComment;
 	
 	public String savePost() {
 
@@ -33,9 +35,18 @@ public class HomeMb {
 
 	public void validatePost(){
 		if (this.postErrorMsg == null){
-			this.setPostErrorMsg(" Are you sure you do not want to write a post? :p");
+			this.setPostErrorMsg(" Are you sure you don't want to write a post? :p");
 		}
 	}
+
+	public void createComment(UserPostDto postDto){
+		Post p = postCntr.getPostById(postDto.getId());
+
+		p.getComments().add(new Comment(this.currentComment));
+		postCntr.save(p);
+		System.out.println("hola");
+	}
+
 
 	
 	public int getId() {
@@ -62,5 +73,13 @@ public class HomeMb {
 
 	public void setPostErrorMsg(String postErrorMsg) {
 		this.postErrorMsg = postErrorMsg;
+	}
+
+	public String getCurrentComment() {
+		return currentComment;
+	}
+
+	public void setCurrentComment(String currentComment) {
+		this.currentComment = currentComment;
 	}
 }

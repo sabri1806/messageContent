@@ -10,18 +10,11 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private String comment;
 
-    @ManyToOne
-    private User user;
-
-    @ManyToOne
-    private Post post;
-
-    @Size(min=2,max=280)
-    private String contentComment;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    public Comment(String comment) {
+        this.comment = comment;
+    }
 
     public int getId() {
         return id;
@@ -31,35 +24,11 @@ public class Comment {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
-    public String getContentComment() {
-        return contentComment;
-    }
-
-    public void setContentComment(String contentComment) {
-        this.contentComment = contentComment;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public String getComment() {
+        return comment;
     }
 }

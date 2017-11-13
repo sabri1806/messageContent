@@ -20,12 +20,9 @@ public class CommentController {
     public void create (User user , Post post, String contentComment){
         post = entityManager.merge(post);
 
-        Comment commment = new Comment();
+        Comment commment = new Comment("");
 
-        commment.setDate(new Date());
-        commment.setPost(post);
-        commment.setUser(user);
-        commment.setContentComment(contentComment);
+        commment.setComment(contentComment);
         entityManager.persist(commment);
     }
 

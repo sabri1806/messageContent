@@ -25,13 +25,10 @@ public class UserController {
 	private EntityManager entityManager;
 
 	public void create(User user) {
-		System.out.println("persistiendo user");
-		System.out.println(user.getUsername());
 		entityManager.persist(user);
 	}
 	
 	public void save(User user) {
-		System.out.println("post del usuario "+user.getPosts());
 		entityManager.merge(user);
 		entityManager.flush();
 	}
@@ -54,16 +51,15 @@ public class UserController {
 		
 		for(User user : u) {
 			if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-				System.out.println("el user existe : " + user);
-				System.out.println("sus post son: " + user.getPosts());
 				return user;
 			}
-			System.out.println("pase por getAuthuser"+ "username: "+username +"user: " + user);
+
 		}
-		System.out.println("pase por getAuthuser pero no obtuve el user"+ "USERNAME: "+username);
+
 		return null;
 	}
 
+	/*
 	public User validateUser(String username, String password) {
 		//aca tengo que reemplazar obtener user por entity manager en lugar de la clase db para validarlo
 		for (User user : db.getUsers()) {
@@ -72,7 +68,7 @@ public class UserController {
 			}
 		}
 		return null;
-	}
+	}*/
 
 	public boolean verifyIfExist(String username) {
 
@@ -86,14 +82,13 @@ public class UserController {
 			if (user.getUsername().equals(username)) {
 				return true;
 			}
-			System.out.println(user.getUsername() + "estoy pasando por verify if exist");
 		}
-		System.out.println("estoy pasando por verify if exist ?!");
+
 		return false;
 	}
 
-	public List<User> getAllUsers() {
+	/*public List<User> getAllUsers() {
 		return db.getUsers();
-	}
+	}*/
 
 }

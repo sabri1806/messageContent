@@ -1,12 +1,11 @@
 package model;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
@@ -17,6 +16,10 @@ public class Post {
 	private int id;
 	private Date date;
 	private String message;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "id_post")
+	private List<Comment> comments = new ArrayList<>();
 	
 	public Post(Date dateMessage, String message) {
 		System.out.println("creando post "+ message);
@@ -48,5 +51,24 @@ public class Post {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
+
+	public List<Comment> getComments() {
+		if(this.comments == null ){
+			this.comments= new ArrayList<>();
+		}
+		return comments;
+	}
+
+	public String getCommentsStr() {
+		String result = "";
+		for (Comment c: this.getComments()){
+			result += "-" + c.getComment();
+		}
+		return result;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
 }

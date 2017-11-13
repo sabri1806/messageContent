@@ -31,10 +31,7 @@ public class User {
 	}
 
 	public void addPost(Post post) {
-		System.out.println("soy el id del user"+ this.id);
 		this.posts.add(post);
-		System.out.println("soy los post del user"+ post.getMessage());
-
 	}
 	
 	public void setPosts(List<Post> posts) {
