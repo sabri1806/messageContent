@@ -26,7 +26,6 @@ public class RegisterMb implements Serializable {
 	public String register(){
 		User user = new User(mail, username, password);
 		userCntr.create(user);
-		//mje de registrado en forma correcta
 		return "login";
 	}
 

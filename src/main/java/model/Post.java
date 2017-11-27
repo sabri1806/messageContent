@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.servlet.http.Part;
 
 
 @Entity
@@ -17,14 +18,18 @@ public class Post {
 	private Date date;
 	private String message;
 
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	private Image image;
+
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "id_post")
 	private List<Comment> comments = new ArrayList<>();
 	
-	public Post(Date dateMessage, String message) {
+	public Post(Date dateMessage, String message, Image image) {
 		System.out.println("creando post "+ message);
 		this.date = dateMessage;
-		this.message = message;	
+		this.message = message;
+		this.image = image;
 	}
 	
 	public int getId() {
@@ -60,15 +65,23 @@ public class Post {
 		return comments;
 	}
 
-	public String getCommentsStr() {
+	/*public String getCommentsStr() {
 		String result = "";
 		for (Comment c: this.getComments()){
 			result += "-" + c.getComment();
 		}
 		return result;
-	}
+	}*/
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 }

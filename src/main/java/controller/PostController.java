@@ -39,7 +39,7 @@ public class PostController {
 				for (Comment c :ps.getComments()){
 					result += "-" + c.getComment();
 				}
-				userPostDto.add(new UserPostDto(ps.getId(),us.getUsername(), ps.getDate(), ps.getMessage(), ps.getComments()));
+				userPostDto.add(new UserPostDto(ps.getId(),us.getUsername(), ps.getDate(), ps.getMessage(), ps.getComments(), ps.getImage()));
 			}
 
 		}

@@ -40,9 +40,7 @@
 			</h1>
 		</b:column>
 	</b:row>
-
 	<b:container>
-
 		<!--Header Page-->
 		<b:row>
 			<h2>You can see and save all your post</h2>
@@ -50,15 +48,16 @@
 		</b:row>
 		<!--Post Form-->
 		<b:row>
-			<h:form>
+			<h:form enctype="multipart/form-data">
 				<b:row class="col-md-offset-4 col-md-4">
 					<b:column>
 						<label class="control-label">Enter your post</label>
-						<h:inputTextarea id="post" class="form-control" rows="3" a:placeholder="Enter your post here"
+						<h:inputTextarea id="post" class="form-control" rows="3" a:placeholder="Enter your post here "
 										 value="#{homeMb.message}">
 							<f:ajax event="blur" listener="#{homeMb.validatePost()}"
 									render="postError" />
 						</h:inputTextarea>
+						<h:inputFile id="file" value="#{homeMb.image}"/>
 						<h:outputText id="postError" value="#{homeMb.postErrorMsg}" />
 						<h:commandButton value="Send post" styleClass="btn btn-info"
 										 action="#{homeMb.savePost}" />
@@ -82,6 +81,9 @@
 					</b:column>
 					<b:column class="col-md-2">
 						#{post.message}
+					</b:column>
+					<b:column class="col-md-2">
+						<img src="/image/#{post.image.path}" style="width: 100px;"/>
 					</b:column>
 					<b:column class="col-md-2">
 						#{post.date}
@@ -108,7 +110,6 @@
 				</b:row>
 			</ui:repeat>
 		</b:row>
-
 	</b:container>
 </h:body>
 </html>

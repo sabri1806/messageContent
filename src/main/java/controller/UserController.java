@@ -1,7 +1,6 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -11,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import model.DB;
-import model.Post;
 import model.User;
 
 @Stateless
@@ -61,22 +59,11 @@ public class UserController {
 			if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
 				return user;
 			}
-
 		}
 
 		return null;
 	}
 
-	/*
-	public User validateUser(String username, String password) {
-		//aca tengo que reemplazar obtener user por entity manager en lugar de la clase db para validarlo
-		for (User user : db.getUsers()) {
-			if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-				return user;
-			}
-		}
-		return null;
-	}*/
 
 	public boolean verifyIfExist(String username) {
 
@@ -91,12 +78,7 @@ public class UserController {
 				return true;
 			}
 		}
-
 		return false;
 	}
-
-	/*public List<User> getAllUsers() {
-		return db.getUsers();
-	}*/
 
 }

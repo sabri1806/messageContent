@@ -16,7 +16,7 @@ public class Comment {
     @Size(min=2,max=255)
     private String comment;
 
-   /* @NotNull
+    /*@NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;*/
 

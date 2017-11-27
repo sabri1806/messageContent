@@ -2,27 +2,27 @@ package dto;
 
 
 import model.Comment;
+import model.Image;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserPostDto {
-	
-	//userName
-	//date
-	//message
+
 	private int id;
 	private String userName;
 	private String date;
 	private String message;
 	private List<Comment> comments = new ArrayList<>();
+	private Image image;
 	
-	public UserPostDto(int id,String userName,String date, String message, List comments) {
+	public UserPostDto(int id,String userName,String date, String message, List comments, Image img) {
 		this.id = id;
 		this.userName = userName;
 		this.date = date;
 		this.message = message;
 		this.comments = comments;
+		this.image = img;
 	}
 
 	public String getUserName() {
@@ -52,5 +52,13 @@ public class UserPostDto {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 }
