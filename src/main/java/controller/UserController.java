@@ -23,7 +23,7 @@ public class UserController {
 	private EntityManager entityManager;
 
 	public void create(User user) {
-		entityManager.persist(user);
+		entityManager.merge(user);
 	}
 	
 	public void save(User user) {

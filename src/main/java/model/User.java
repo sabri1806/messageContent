@@ -1,5 +1,6 @@
 package model;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,9 @@ public class User {
 	private String mail;
 	private String username;
 	private String password;
+
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	private Image image;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "id_user")
@@ -32,10 +36,11 @@ public class User {
 		this.posts = posts;
 	}
 
-	public User(String mail, String username, String password) {
+	public User(String mail, String username, String password, Image img) {
 		this.mail = mail;
 		this.username = username;
 		this.password = password;
+		this.image = img;
 	}
 
 	public int getId() {
@@ -69,5 +74,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
 }

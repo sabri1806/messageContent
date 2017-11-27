@@ -1,13 +1,15 @@
 package view;
 
+import controller.ImageController;
 import controller.UserController;
+import model.Image;
 import model.User;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+import javax.servlet.http.Part;
 
-import controller.UserController;
-import model.User;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 @ManagedBean
@@ -16,16 +18,35 @@ public class RegisterMb implements Serializable {
 	@Inject
 	private UserController userCntr;
 
+	@Inject
+	private ImageController imgCntr;
+
 	private int userId;
 	private String username;
 	private String password;
 	private String mail;
 	private String usernameErrorMsg;
 	private String mailErrorMsg;
+	private Part image;
+
+
+
 
 	public String register(){
-		User user = new User(mail, username, password);
-		userCntr.create(user);
+		try{
+			Image img = null;
+
+			if (image != null && image.getSize() > 0 && image.getContentType().startsWith("image/")){
+				img = imgCntr.upload(image);
+			}
+
+			User user = new User(mail, username, password, img);
+			userCntr.create(user);
+			return "login";
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+
 		return "login";
 	}
 
@@ -90,5 +111,11 @@ public class RegisterMb implements Serializable {
 		this.mailErrorMsg = mailErrorMsg;
 	}
 
+	public Part getImage() {
+		return image;
+	}
 
+	public void setImage(Part image) {
+		this.image = image;
+	}
 }
