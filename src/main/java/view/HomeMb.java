@@ -41,7 +41,6 @@ public class HomeMb {
 
 
 	public String savePost() {
-
 		try {
 			Image img = null;
 			if(image != null && image.getSize() > 0 && image.getContentType().startsWith("image/")){
@@ -87,7 +86,7 @@ public class HomeMb {
 		}
 	}
 
-	private static String getFileName(Part part){
+	/*private static String getFileName(Part part){
 		for (String cd : part.getHeader("content-disposition").split(";") ){
 			if(cd.trim().startsWith("filename")){
 				String filename = cd.substring(cd.indexOf("=") + 1 ).trim().replace("\"", "");
@@ -95,7 +94,7 @@ public class HomeMb {
 			}
 		}
 		return null;
-	}
+	}*/
 
 	public void createComment(UserPostDto postDto){
 		Post p = postCntr.getPostById(postDto.getId());
@@ -132,6 +131,10 @@ public class HomeMb {
 		return postCntr.getAllPost();
 	}
 
+	public List<Post> getMyPosts(){
+
+		return userController.getCurrentUser().getPosts();
+	}
 
 	public String getPostErrorMsg() {
 		return postErrorMsg;

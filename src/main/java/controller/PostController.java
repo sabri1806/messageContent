@@ -64,8 +64,14 @@ public class PostController {
 	}
 
 	public List<Post> getUserPost(User user) {
-		
-		return user.getPosts();
+		User u = entityManager.find(User.class,user);
+
+		TypedQuery<Post> q = entityManager.createQuery("Select p from Post p where p.user = :user",Post.class);
+		q.setParameter("user",user);
+
+
+
+		return q.getResultList();
 	}
 
 	public void deletePost(int postId) {
