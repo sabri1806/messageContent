@@ -31,6 +31,10 @@
 						<h:commandLink class="navbar-brand" value="Log out"
 									   action="#{authMb.logout}" rendered="#{authMb.logged}" />
 					</div>
+					<div class="navbar-header">
+						<h:link class="navbar-brand" value="My posts" outcome="myPost"
+									    rendered="#{authMb.logged}" />
+					</div>
 				</nav>
 			</h:form>
 		</b:column>

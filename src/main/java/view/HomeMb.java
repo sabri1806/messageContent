@@ -131,9 +131,8 @@ public class HomeMb {
 		return postCntr.getAllPost();
 	}
 
-	public List<Post> getMyPosts(){
-
-		return userController.getCurrentUser().getPosts();
+	public List<UserPostDto> getAllMyPost(){
+		return postCntr.getAllMyPost(userController.getCurrentUser());
 	}
 
 	public String getPostErrorMsg() {

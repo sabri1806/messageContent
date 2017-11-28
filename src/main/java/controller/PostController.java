@@ -14,7 +14,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import dto.UserPostDto;
-import javafx.geometry.Pos;
 import model.Comment;
 import model.DB;
 import model.Post;
@@ -63,16 +62,21 @@ public class PostController {
 		entityManager.flush();
 	}
 
-	public List<Post> getUserPost(User user) {
-		User u = entityManager.find(User.class,user);
+	public List<UserPostDto> getAllMyPost(User user) {
+		List<UserPostDto> userPostDto = new ArrayList<>();
 
-		TypedQuery<Post> q = entityManager.createQuery("Select p from Post p where p.user = :user",Post.class);
-		q.setParameter("user",user);
+		for (Post ps : user.getPosts()) {
+			String result = "";
+			for (Comment c :ps.getComments()){
+				result += "-" + c.getComment();
+			}
+			userPostDto.add(new UserPostDto(ps.getId(),user.getUsername(), ps.getDate(), ps.getMessage(), ps.getComments(), ps.getImage()));
+		}
 
-
-
-		return q.getResultList();
+		
+		return userPostDto;
 	}
+
 
 	public void deletePost(int postId) {
 		Post p = getPostById(postId);
