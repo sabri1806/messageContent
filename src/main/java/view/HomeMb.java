@@ -37,6 +37,7 @@ public class HomeMb {
 	private String message;
 	private String postErrorMsg;
 	private String currentComment;
+	private String commentErrorMsg;
 	private Part image;
 
 
@@ -54,29 +55,12 @@ public class HomeMb {
 			e.printStackTrace();
 		}
 
-
 		//This is to reset the input post
 		this.setMessage("");
 		return "";
 	}
 
-	/*public void doUploadFile(){
-		try{
-			InputStream inputStream = image.getInputStream();
-			//File f = new File("\\Users\\Sabrina\\Desktop\\uploads"+ image.getSubmittedFileName());
-		} catch (Exception e){
-			e.getStackTrace();
-		}
-	}*/
 
-	/*public String doUploadFile(){
-		try {
-			image.write("C:\\Users\\Sabrina\\Desktop\\uploads"+ getFileName(image));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return "sucess";
-	}*/
 
 	public void validatePost(){
 		if (this.getMessage().length()<2){
@@ -86,22 +70,25 @@ public class HomeMb {
 		}
 	}
 
-	/*private static String getFileName(Part part){
-		for (String cd : part.getHeader("content-disposition").split(";") ){
-			if(cd.trim().startsWith("filename")){
-				String filename = cd.substring(cd.indexOf("=") + 1 ).trim().replace("\"", "");
-				return filename.substring(filename.lastIndexOf('/')+ 1 ).substring(filename.lastIndexOf('\\'+ 1 ));
-			}
+	public boolean validateComment(){
+		if (this.getCurrentComment().length()<1){
+			this.setCommentErrorMsg("Enter please a comment");
+			return false;
+		}else {
+			this.setCommentErrorMsg("");
+			return true;
 		}
-		return null;
-	}*/
+	}
+
 
 	public void createComment(UserPostDto postDto){
+		if(!validateComment()){
+			return;
+		}
 		Post p = postCntr.getPostById(postDto.getId());
 		p.getComments().add(new Comment(this.currentComment));
 		postCntr.save(p);
 		this.setCurrentComment("");
-
 	}
 
 	public void deletePost(UserPostDto userPostDto) {
@@ -159,4 +146,11 @@ public class HomeMb {
 		this.image = image;
 	}
 
+	public String getCommentErrorMsg() {
+		return commentErrorMsg;
+	}
+
+	public void setCommentErrorMsg(String commentErrorMsg) {
+		this.commentErrorMsg = commentErrorMsg;
+	}
 }
